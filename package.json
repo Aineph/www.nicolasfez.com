@@ -12,9 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.2",
     "@tailwindcss/postcss": "^4.0.8",
-    "gsap": "^3.12.7",
     "next": "15.1.6",
     "next-intl": "^3.26.3",
     "react": "^19.0.0",
