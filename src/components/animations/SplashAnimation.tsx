@@ -122,21 +122,21 @@ export default function SplashAnimation({ repeat = false }: SplashAnimationProps
                  data-testid="splash-animation">
                 <Image
                     id="splash-first-item"
-                    className="col-start-1 row-start-2 dark:invert"
+                    className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo_n.svg"
                     alt="N"
                     fill={true}
                     data-testid="splash-first-item"/>
                 <Image
                     id="splash-second-item"
-                    className="col-start-1 row-start-2 dark:invert"
+                    className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo.svg"
                     alt="NF"
                     fill={true}
                     data-testid="splash-second-item"/>
                 <Image
                     id="splash-third-item"
-                    className="col-start-1 row-start-2 dark:invert"
+                    className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo_f.svg"
                     alt="F"
                     fill={true}
