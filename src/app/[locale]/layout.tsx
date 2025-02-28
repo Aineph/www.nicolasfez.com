@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import '../globals.css'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { useLocale } from 'next-intl'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -26,8 +27,11 @@ export default function RootLayout({
                                    }: Readonly<{
     children: React.ReactNode;
 }>) {
+
+    const locale = useLocale()
+
     return (
-        <html lang="en">
+        <html lang={locale}>
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
