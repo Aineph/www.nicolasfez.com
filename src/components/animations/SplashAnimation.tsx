@@ -5,7 +5,7 @@
 
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
@@ -24,13 +24,15 @@ export interface SplashAnimationProps {
  * Animates the application logo on the whole screen
  */
 export default function SplashAnimation({ repeat = false }: SplashAnimationProps): React.ReactNode {
-    const container = useRef<HTMLDivElement>(null)
-
-    const { contextSafe } = useGSAP({ scope: container })
+    const { contextSafe } = useGSAP()
 
     const createTimeline = contextSafe((repeat: boolean) => {
         const timeline = gsap.timeline({ paused: true, repeat: repeat ? -1 : 0 })
 
+        timeline.set('#splash-animation-container', {
+            opacity: 1,
+            visibility: 'visible',
+        })
         timeline.set('#splash-animation', {
             visibility: 'visible',
         })
@@ -100,6 +102,14 @@ export default function SplashAnimation({ repeat = false }: SplashAnimationProps
             opacity: 0,
             scaleY: 0,
         }, '>')
+        timeline.to('#splash-animation-container', {
+            duration: SPLASH_ANIMATION_DURATION,
+            ease: 'expo.inOut',
+            opacity: 0,
+        }, '<')
+        timeline.set('#splash-animation-container', {
+            visibility: 'hidden',
+        })
         timeline.set('#splash-animation', {
             visibility: 'hidden',
         })
@@ -109,37 +119,44 @@ export default function SplashAnimation({ repeat = false }: SplashAnimationProps
     useEffect(() => {
         const timeline = createTimeline(repeat)
 
+        window.addEventListener('scroll', (event) => {
+            event.preventDefault();
+        })
+
         timeline.play()
         return () => {
+            timeline.seek(0)
             timeline.kill()
         }
     }, [repeat, createTimeline])
 
     return (
-        <div ref={container}>
+        <div
+            id="splash-animation-container"
+            className="fixed top-0 left-0 z-50 opacity-1">
             <div id="splash-animation"
-                 className="w-screen h-screen z-50 grid grid-cols-1 grid-rows-3"
+                 className="w-screen h-screen grid grid-cols-1 grid-rows-3 bg-background"
                  data-testid="splash-animation">
                 <Image
                     id="splash-first-item"
                     className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo_n.svg"
                     alt="N"
-                    fill={true}
+                    fill
                     data-testid="splash-first-item"/>
                 <Image
                     id="splash-second-item"
                     className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo.svg"
                     alt="NF"
-                    fill={true}
+                    fill
                     data-testid="splash-second-item"/>
                 <Image
                     id="splash-third-item"
                     className="col-start-1 row-start-2 opacity-0 dark:invert"
                     src="/logo_f.svg"
                     alt="F"
-                    fill={true}
+                    fill
                     data-testid="splash-third-item"/>
             </div>
         </div>

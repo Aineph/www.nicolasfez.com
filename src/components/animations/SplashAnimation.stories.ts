@@ -1,3 +1,8 @@
+/**
+ * Created by Nicolas Fez for www.nicolasfez.com.
+ * Started on 24/02/2025.
+ */
+
 import SplashAnimation from '@/components/animations/SplashAnimation'
 import { Meta, StoryObj } from '@storybook/react'
 
