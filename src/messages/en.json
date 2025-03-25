@@ -1,2 +1,11 @@
 {
+  "Locales": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "Sections": {
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact"
+  }
 }
