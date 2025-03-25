@@ -1,9 +1,5 @@
-import SplashAnimation from '@/components/animations/SplashAnimation'
+import Home from '@/components/pages/Home'
 
-export default function Home() {
-    return (
-        <div className={'flex'} data-testid="home">
-            <SplashAnimation/>
-        </div>
-    )
+export default function Page () {
+  return <Home/>
 }

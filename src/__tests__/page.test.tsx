@@ -1,8 +1,9 @@
 import { expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import Page from '../app/[locale]/page'
+import Home from '@/components/pages/Home'
 
-test('Page', () => {
-    render(<Page/>)
-    expect(screen.getByTestId('home')).toBeDefined()
+test('Home page should be defined', () => {
+  render(<Home/>)
+
+  expect(screen.getByTestId('home')).toBeDefined()
 })
